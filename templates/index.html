@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2 style="font-size: 2rem;">¡Bienvenido!</h2>
+    
+    <a href="/registrar/compra" class="btn-menu">🛒 Registrar Compra</a>
+    <a href="/registrar/venta" class="btn-menu" style="background-color: #27ae60;">💰 Registrar Venta</a>
+    <a href="/ver/productos" class="btn-menu" style="background-color: #e67e22;">📦 Ver Productos</a>
+
+    <div class="row-buttons">
+        <a href="/ver/historial/compras" class="btn-menu" style="background-color: #8e44ad;">📜 Historial Compras</a>
+        <a href="/ver/historial/ventas" class="btn-menu" style="background-color: #8e44ad;">📜 Historial Ventas</a>
+        <a href="/ver/top" class="btn-menu" style="background-color: #f1c40f; color: #333;">🏆 Top Ventas</a>
+    </div>
+{% endblock %}

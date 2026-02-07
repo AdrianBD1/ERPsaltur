@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>{{ titulo }}</h2>
+
+<input type="text" id="buscador" onkeyup="filtrarTabla()" placeholder="Buscar por nombre...">
+
+<table id="miTabla">
+    <thead>
+        <tr>
+            <th onclick="sortTable(0)">Nombre</th>
+            {% if tipo == 'inventario' %}
+            <th onclick="sortTable(1)">Stock</th>
+            <th onclick="sortTable(2)">Precio Compra</th>
+            <th onclick="sortTable(3)">Ubicación</th>
+            {% else %}
+            <th onclick="sortTable(1)">Fecha</th>
+            <th onclick="sortTable(2)">Cantidad</th>
+            <th onclick="sortTable(3)">Total</th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in datos %}
+        <tr>
+            <td>{{ item.nombre }}</td>
+            {% if tipo == 'inventario' %}
+                <td>{{ item.stock }}</td>
+                <td>{{ item.precio_compra }}</td>
+                <td>{{ item.ubicacion }}</td>
+            {% else %}
+                <td>{{ item.fecha_compra if tipo == 'compras' else item.fecha_venta }}</td>
+                <td>{{ item.cantidad }}</td>
+                <td>{{ item.total }}</td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<script>
+function filtrarTabla() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("buscador");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("miTabla");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0]; // Buscar en Nombre (columna 0)
+        if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }       
+    }
+}
+</script>
+{% endblock %}

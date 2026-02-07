@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Registrar Nueva Venta</h2>
+<div id="items-container"></div>
+
+<button type="button" class="btn-menu btn-add" onclick="agregarFilaVenta()">+ Agregar Fila</button>
+<button type="button" class="btn-menu btn-register" onclick="enviarFormulario('venta')">REGISTRAR VENTA</button>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        agregarFilaVenta();
+    });
+</script>
+{% endblock %}

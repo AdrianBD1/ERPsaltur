@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Top Ventas</h2>
+<div class="input-group">
+    <label>Últimos días: </label>
+    <input type="number" id="dias" value="30" style="width: 100px;">
+    <button class="btn-add" onclick="cargarTop()">Calcular</button>
+</div>
+
+<div style="margin-top: 10px;">
+    <button onclick="sortTable(1)">Ordenar por Cantidad</button>
+    <button onclick="sortTable(2)">Ordenar por Ganancia</button>
+</div>
+
+<table id="tablaTop">
+    <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Cantidad Vendida</th>
+            <th>Ganancia Estimada</th>
+            <th>Total Ingresos</th>
+        </tr>
+    </thead>
+    <tbody id="bodyTop"></tbody>
+</table>
+
+<script>
+async function cargarTop() {
+    const dias = document.getElementById("dias").value;
+    const res = await fetch(`/api/top-ventas?dias=${dias}`);
+    const data = await res.json();
+    
+    const tbody = document.getElementById("bodyTop");
+    tbody.innerHTML = "";
+    
+    data.forEach(item => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+            <td>${item.nombre}</td>
+            <td>${item.cantidad}</td>
+            <td>${item.ganancia.toFixed(2)}</td>
+            <td>${item.total.toFixed(2)}</td>
+        `;
+        tbody.appendChild(tr);
+    });
+}
+</script>
+{% endblock %}

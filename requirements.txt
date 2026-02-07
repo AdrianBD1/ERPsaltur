@@ -1,0 +1,5 @@
+fastapi[all]
+uvicorn[standard]
+jinja2
+python-multipart
+pandas

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Registrar Nueva Compra</h2>
+<div id="items-container">
+    </div>
+
+<button type="button" class="btn-menu btn-add" onclick="agregarFilaCompra()">+ Agregar Fila</button>
+<button type="button" class="btn-menu btn-register" onclick="enviarFormulario('compra')">REGISTRAR COMPRA</button>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        agregarFilaCompra(); // Iniciar con una fila
+    });
+</script>
+{% endblock %}
